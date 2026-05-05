@@ -5,15 +5,7 @@
 
 # Android Studio / IntelliJ
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-/.idea/.name
-/.idea/vcs.xml
-/.idea/deviceManager.xml
+/.idea/*
 .DS_Store
 **/.DS_Store
 
