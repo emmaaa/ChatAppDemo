@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ChatApp</string>
+    <string name="text_input_placeholder">Type a message…</string>
+    <string name="typing_indicator">Typing…</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_more_options">More options</string>
+    <string name="btn_send">Send</string>
+</resources>
