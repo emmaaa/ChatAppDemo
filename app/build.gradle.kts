@@ -58,27 +58,30 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons)
     implementation(libs.google.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
+
     // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     ksp(libs.google.hilt.compiler)
-     // Testing
-     testImplementation(libs.junit)
-     testImplementation("org.jetbrains.kotlin:kotlin-test:2.2.10")
-     testImplementation("io.mockk:mockk:1.13.10")
-     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
 
-      androidTestImplementation(libs.androidx.junit)
-      androidTestImplementation(libs.androidx.espresso.core)
-      androidTestImplementation(platform(libs.androidx.compose.bom))
-      androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-      androidTestImplementation("androidx.room:room-testing:2.7.0")
-      androidTestImplementation("io.mockk:mockk-android:1.13.10")
-      androidTestImplementation("org.jetbrains.kotlin:kotlin-test:2.2.10")
+    // Testing
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 
-     debugImplementation(libs.androidx.compose.ui.tooling)
-     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.room.testing)
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.kotlin.test)
+
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
