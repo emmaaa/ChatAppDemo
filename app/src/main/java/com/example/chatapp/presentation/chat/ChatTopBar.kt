@@ -16,7 +16,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -38,8 +38,7 @@ internal fun ChatTopBar(
                 UserAvatar(
                     name = userName,
                     size = dimensionResource(R.dimen.avatar_size_topbar),
-                    // TODO: Move color
-                    backgroundColor = Color(0xFFFF8A65),
+                    backgroundColor = colorResource(R.color.avatar_background),
                     imageResourceId = if (userName == "Sarah") R.drawable.avatar else null
                 )
                 Spacer(Modifier.width(dimensionResource(R.dimen.padding_spacer_width)))
@@ -76,6 +75,3 @@ internal fun ChatTopBar(
 private fun ChatTopBarPreview() {
     ChatTopBar(userName = "Sarah")
 }
-
-
-

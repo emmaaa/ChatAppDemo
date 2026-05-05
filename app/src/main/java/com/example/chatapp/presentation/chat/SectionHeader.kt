@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,12 +33,12 @@ internal fun SectionHeader(
             modifier = Modifier
                 .weight(1f)
                 .size(height = dimensionResource(R.dimen.spacer_divider_height), width = 0.dp)
-                .background(Color(0xFFD0D0D0))
+                .background(colorResource(R.color.section_header_divider))
         )
         Text(
             text = label,
             fontSize = dimensionResource(R.dimen.text_size_section_header).value.sp,
-            color = Color(0xFF9E9E9E),
+            color = colorResource(R.color.section_header_text),
             modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_section_header_horizontal)),
             textAlign = TextAlign.Center
         )
@@ -46,7 +46,7 @@ internal fun SectionHeader(
             modifier = Modifier
                 .weight(1f)
                 .size(height = dimensionResource(R.dimen.spacer_divider_height), width = 0.dp)
-                .background(Color(0xFFD0D0D0))
+                .background(colorResource(R.color.section_header_divider))
         )
     }
 }
@@ -56,4 +56,3 @@ internal fun SectionHeader(
 private fun SectionHeaderPreview() {
     SectionHeader(label = "Today 14:30")
 }
-

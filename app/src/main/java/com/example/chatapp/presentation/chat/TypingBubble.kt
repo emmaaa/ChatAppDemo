@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +34,7 @@ internal fun TypingBubble(
         UserAvatar(
             name = userName,
             size = dimensionResource(R.dimen.avatar_size_message),
-            backgroundColor = Color(0xFFFF8A65),
+            backgroundColor = colorResource(R.color.avatar_background),
             modifier = Modifier.padding(end = dimensionResource(R.dimen.padding_avatar_end)),
             imageResourceId = if (userName == "Sarah") R.drawable.avatar else null
         )
@@ -50,7 +51,7 @@ internal fun TypingBubble(
         ) {
             Text(
                 text = stringResource(R.string.typing_indicator),
-                color = Color(0xFF6E6E6E),
+                color = colorResource(R.color.typing_indicator_text),
                 fontSize = dimensionResource(R.dimen.text_size_typing).value.sp,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(R.dimen.padding_text_bubble_horizontal),
@@ -66,4 +67,3 @@ internal fun TypingBubble(
 private fun TypingBubblePreview() {
     TypingBubble(userName = "Sarah")
 }
-

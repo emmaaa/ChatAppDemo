@@ -86,7 +86,7 @@ internal fun MessageInputBar(
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.Send,
                 contentDescription = stringResource(R.string.btn_send),
-                tint = colorResource(R.color.white),
+                tint = colorResource(R.color.send_button_icon),
                 modifier = Modifier.size(dimensionResource(R.dimen.icon_send_size))
             )
         }

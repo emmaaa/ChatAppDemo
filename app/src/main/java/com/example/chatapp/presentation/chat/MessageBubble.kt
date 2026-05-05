@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
@@ -43,7 +44,7 @@ internal fun MessageBubble(
             UserAvatar(
                 name = otherUserName,
                 size = dimensionResource(R.dimen.avatar_size_message),
-                backgroundColor = Color(0xFFFF8A65),
+                backgroundColor = colorResource(R.color.avatar_background),
                 modifier = Modifier.padding(end = dimensionResource(R.dimen.padding_avatar_end)),
                 imageResourceId = if (otherUserName == "Sarah") com.example.chatapp.R.drawable.avatar else null
             )
@@ -74,7 +75,7 @@ internal fun MessageBubble(
         ) {
             Text(
                 text = item.message.text,
-                color = if (isCurrentUser) Color.White else Color(0xFF1A1A1A),
+                color = if (isCurrentUser) Color.White else colorResource(R.color.message_text_received),
                 fontSize = dimensionResource(R.dimen.text_size_message).value.sp,
                 lineHeight = dimensionResource(R.dimen.line_height_message).value.sp,
                 modifier = Modifier.padding(
@@ -105,4 +106,3 @@ private fun MessageBubbleReceivedPreview() {
     )
     MessageBubble(item = item, isCurrentUser = false, otherUserName = "Sarah")
 }
-

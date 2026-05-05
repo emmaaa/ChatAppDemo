@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-
-    <!-- Message Input Bar colors -->
+    <!-- Message Input Bar -->
     <color name="placeholder_text">#FFAAAAAA</color>
     <color name="text_field_background">#FFF0F0F0</color>
     <color name="text_color_light_mode">#FF1A1A1A</color>
     <color name="text_color_dark_mode">#FF121212</color>
     <color name="chat_pink">#FFE91E8C</color>
+    <color name="send_button_icon">#FFFFFFFF</color>
+
+    <!-- Avatar -->
+    <color name="avatar_background">#FFFF8A65</color>
+
+    <!-- Message Bubble -->
+    <color name="message_text_received">#FF1A1A1A</color>
+
+    <!-- Typing Bubble -->
+    <color name="typing_indicator_text">#FF6E6E6E</color>
+
+    <!-- Section Header -->
+    <color name="section_header_divider">#FFD0D0D0</color>
+    <color name="section_header_text">#FF9E9E9E</color>
 </resources>

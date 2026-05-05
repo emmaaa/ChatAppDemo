@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
+import androidx.compose.ui.res.colorResource
 import com.example.chatapp.R
 
 @Composable
@@ -61,7 +62,7 @@ private fun UserAvatarPreview() {
     UserAvatar(
         name = "Sarah",
         size = 36.dp,
-        backgroundColor = Color(0xFFFF8A65)
+        backgroundColor = colorResource(R.color.avatar_background)
     )
 }
 
