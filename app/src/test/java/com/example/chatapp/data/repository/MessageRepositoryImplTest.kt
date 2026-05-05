@@ -3,7 +3,6 @@ package com.example.chatapp.data.repository
 import com.example.chatapp.data.local.MessageService
 import com.example.chatapp.data.local.MessageEntity
 import com.example.chatapp.domain.model.Message
-import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk

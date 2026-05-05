@@ -95,15 +95,17 @@ Current unit tests cover:
   - section header insertion on long gap
   - send guard for blank input
 
+- One basic UI test (`ChatScreenTest`) just launches the screen
+- Basic Accessibility testing of adaptive text sizes and content descriptions
+
 ### Theoretical future improvements
 
 Testing: 
-- same timestamp-window but different sender should not group
-- exactly one hour gap should not create a new section header
-- positive send path assertion for trimmed non-blank input and sender id
+- There is only one basic UI test, this can be expanded to cover more AC
+- Same timestamp-window but different sender should not group
+- Snapshot tests, PACT tests, e2e tests...
 
 App Features:
-- introduce an explicit message-group UI model if bubble-level metadata grows
-- move date/time formatting to a dedicated formatter for easier localization testing
-- add instrumentation tests for key chat UI flows (send, scroll, grouping visuals)
-- accessibility can be improved by grouping avatar with message (currently read separately)
+- Avatar and username is hardcoded, this can be added to data model 
+- Move date/time formatting to a dedicated formatter for easier localization testing
+- Accessibility can be improved by grouping avatar with message (currently read separately)

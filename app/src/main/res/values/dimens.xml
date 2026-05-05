@@ -27,7 +27,6 @@
     <dimen name="button_send_size">48dp</dimen>
     <dimen name="icon_send_size">22dp</dimen>
     <dimen name="text_field_corner_radius">24dp</dimen>
-    <dimen name="icon_color_placeholder">0</dimen>
 
     <!-- Text sizes -->
     <dimen name="text_size_section_header">11sp</dimen>

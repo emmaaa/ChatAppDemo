@@ -46,7 +46,7 @@ internal fun MessageBubble(
                 size = dimensionResource(R.dimen.avatar_size_message),
                 backgroundColor = colorResource(R.color.avatar_background),
                 modifier = Modifier.padding(end = dimensionResource(R.dimen.padding_avatar_end)),
-                imageResourceId = if (otherUserName == "Sarah") com.example.chatapp.R.drawable.avatar else null
+                imageResourceId = if (otherUserName == "Sarah") R.drawable.avatar else null
             )
         }
 

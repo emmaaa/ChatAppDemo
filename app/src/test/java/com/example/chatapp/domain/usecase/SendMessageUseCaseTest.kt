@@ -1,8 +1,6 @@
 package com.example.chatapp.domain.usecase
 
-import com.example.chatapp.domain.model.Message
 import com.example.chatapp.domain.repository.MessageRepository
-import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
