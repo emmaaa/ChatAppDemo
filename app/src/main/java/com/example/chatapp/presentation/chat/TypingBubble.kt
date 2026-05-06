@@ -10,13 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import com.example.chatapp.R
+import com.example.chatapp.ui.theme.AvatarBackground
 import com.example.chatapp.ui.theme.BubbleReceived
+import com.example.chatapp.ui.theme.ChatDimensions
+import com.example.chatapp.ui.theme.TypingIndicatorText
 
 @Composable
 internal fun TypingBubble(
@@ -26,35 +26,35 @@ internal fun TypingBubble(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(bottom = dimensionResource(R.dimen.message_spacing_normal)),
+            .padding(bottom = ChatDimensions.messageSpacingNormal),
         horizontalArrangement = androidx.compose.foundation.layout.Arrangement.Start,
         verticalAlignment = Alignment.Bottom
     ) {
         UserAvatar(
             name = userName,
-            size = dimensionResource(R.dimen.avatar_size_message),
-            backgroundColor = colorResource(R.color.avatar_background),
-            modifier = Modifier.padding(end = dimensionResource(R.dimen.padding_avatar_end)),
+            size = ChatDimensions.avatarSizeMessage,
+            backgroundColor = AvatarBackground,
+            modifier = Modifier.padding(end = ChatDimensions.paddingAvatarEnd),
             imageResourceId = if (userName == "Sarah") R.drawable.avatar else null
         )
 
         Surface(
             shape = RoundedCornerShape(
-                topStart = dimensionResource(R.dimen.bubble_corner_radius_large),
-                topEnd = dimensionResource(R.dimen.bubble_corner_radius_large),
-                bottomStart = dimensionResource(R.dimen.bubble_corner_radius_tail),
-                bottomEnd = dimensionResource(R.dimen.bubble_corner_radius_large)
+                topStart = ChatDimensions.bubbleCornerRadiusLarge,
+                topEnd = ChatDimensions.bubbleCornerRadiusLarge,
+                bottomStart = ChatDimensions.bubbleCornerRadiusTail,
+                bottomEnd = ChatDimensions.bubbleCornerRadiusLarge
             ),
             color = BubbleReceived,
-            modifier = Modifier.widthIn(max = dimensionResource(R.dimen.typing_bubble_max_width))
+            modifier = Modifier.widthIn(max = ChatDimensions.typingBubbleMaxWidth)
         ) {
             Text(
                 text = stringResource(R.string.typing_indicator),
-                color = colorResource(R.color.typing_indicator_text),
-                fontSize = dimensionResource(R.dimen.text_size_typing).value.sp,
+                color = TypingIndicatorText,
+                fontSize = ChatDimensions.textSizeTyping,
                 modifier = Modifier.padding(
-                    horizontal = dimensionResource(R.dimen.padding_text_bubble_horizontal),
-                    vertical = dimensionResource(R.dimen.padding_text_bubble_vertical)
+                    horizontal = ChatDimensions.paddingTextBubbleHorizontal,
+                    vertical = ChatDimensions.paddingTextBubbleVertical
                 )
             )
         }

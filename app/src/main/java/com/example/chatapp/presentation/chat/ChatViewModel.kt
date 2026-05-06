@@ -69,7 +69,7 @@ class ChatViewModel @Inject constructor(
     private suspend fun simulateOtherTypingAndReply() {
         _otherTypingCount.value += 1
         try {
-            delay(1_200)
+            delay(3_200)
             val reply = DEMO_REPLIES[nextReplyIndex % DEMO_REPLIES.size]
             nextReplyIndex++
             sendMessage(reply, OTHER_USER_ID)
@@ -188,4 +188,3 @@ class ChatViewModel @Inject constructor(
         )
     }
 }
-

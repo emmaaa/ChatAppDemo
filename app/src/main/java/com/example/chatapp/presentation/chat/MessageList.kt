@@ -1,15 +1,14 @@
 package com.example.chatapp.presentation.chat
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
-import com.example.chatapp.R
+import com.example.chatapp.ui.theme.ChatDimensions
 
 @Composable
 internal fun MessageList(
@@ -21,8 +20,8 @@ internal fun MessageList(
     LazyColumn(
         state = listState,
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = dimensionResource(R.dimen.padding_list_horizontal)),
+            .fillMaxSize()
+            .padding(horizontal = ChatDimensions.paddingListHorizontal),
         verticalArrangement = Arrangement.Bottom
     ) {
         itemsIndexed(

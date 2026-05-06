@@ -1,5 +1,3 @@
-AVATAR
-
 # ChatApp
 
 Simple one-to-one chat demo-app built with Kotlin, Jetpack Compose, Room, and Hilt.
@@ -23,7 +21,16 @@ The app renders a chat conversation where:
 5. Message editing/deleting, delivery/read receipts, and attachments are out of scope
 6. Pagination is not required for the expected local dataset size
 
-## 3) Architecture
+## 3) Tech Stack
+
+- Kotlin
+- Jetpack Compose (Material3)
+- Room
+- Hilt (DI)
+- Coroutines + Flow
+- JUnit + Mockito + Turbine (unit tests)
+
+## 4) Architecture
 
 The project follows a lightweight clean layering approach:
 
@@ -58,7 +65,7 @@ Key Kotlin/Android techniques used:
 - coroutine structured concurrency (`viewModelScope`)
 - DI via Hilt with constructor injection
 
-## 4) Key Implementation Decisions 
+## 5) Key Implementation Decisions
 
 1. **Thin useCase layer**
    - Business rules live close to domain behavior (e.g. trimming input in `SendMessageUseCase`)
@@ -74,14 +81,39 @@ Key Kotlin/Android techniques used:
 4. **Hilt for composition root**
    - Reduces manual wiring and keeps constructor dependencies explicit.
 
-## 5) KISS Boundaries / Non-goals
+## 6) Trade-offs
+
+- **Local-only persistence (Room) over backend sync**
+  - Keeps the app deterministic, fast to run, and easy to test.
+  - Trade-off: no real-time multi-device sync/conflict handling.
+
+- **ViewModel handles list shaping (grouping + headers)**
+  - Keeps composables mostly dumb/render-only and easier to reason about.
+  - Trade-off: presentation logic is concentrated in one place and can grow quickly.
+
+- **Simulated replies/typing instead of network events**
+  - Lets me demonstrate chat UX behaviour easily without network complexity.
+  - Trade-off: not representative of production socket/push events
+
+- **Unit-test-heavy approach over broad UI/instrumentation coverage**
+  - Fast feedback on core message logic
+  - Trade-off: less end-to-end UI guarantees
+
+## 7) KISS Boundaries / Non-goals
 
 - no network layer
 - no retry/error UI states
 - no message editing/deleting
 - no pagination (small local dataset)
 
-## 6) Testing Strategy
+## 8) Cheeky Bonus Points
+- Added an app icon
+- Theming with Material3 and dark mode support
+- Simulated "typing..." indicator for the other person during the delay before their reply is shown
+- Accessibility testing of adaptive text sizes and content descriptions
+- Toast feedback on back and more options buttons with suggestions of what they would do
+
+## 9) Testing Strategy
 
 Current unit tests cover:
 
@@ -98,7 +130,7 @@ Current unit tests cover:
 - One basic UI test (`ChatScreenTest`) just launches the screen
 - Basic Accessibility testing of adaptive text sizes and content descriptions
 
-### Theoretical future improvements
+## 10) Theoretical future improvements / "If I had more time..."
 
 Testing: 
 - There is only one basic UI test, this can be expanded to cover more AC
@@ -106,6 +138,8 @@ Testing:
 - Snapshot tests, PACT tests, e2e tests...
 
 App Features:
+- Back button could go back to the messages list
+- More options button can have features like block, mute, and search message history
 - Avatar and username is hardcoded, this can be added to data model 
 - Move date/time formatting to a dedicated formatter for easier localization testing
 - Accessibility can be improved by grouping avatar with message (currently read separately)

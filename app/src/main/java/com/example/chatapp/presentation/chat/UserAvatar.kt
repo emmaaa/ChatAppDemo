@@ -1,5 +1,6 @@
 package com.example.chatapp.presentation.chat
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
@@ -17,9 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.Image
-import androidx.compose.ui.res.colorResource
-import com.example.chatapp.R
+import com.example.chatapp.ui.theme.AvatarBackground
+import com.example.chatapp.ui.theme.AvatarInitialText
 
 @Composable
 internal fun UserAvatar(
@@ -48,7 +48,7 @@ internal fun UserAvatar(
         } else {
             Text(
                 text = name.firstOrNull()?.uppercaseChar()?.toString() ?: "?",
-                color = Color.White,
+                color = AvatarInitialText,
                 fontWeight = FontWeight.Bold,
                 fontSize = (size.value * 0.42f).sp
             )
@@ -62,7 +62,6 @@ private fun UserAvatarPreview() {
     UserAvatar(
         name = "Sarah",
         size = 36.dp,
-        backgroundColor = colorResource(R.color.avatar_background)
+        backgroundColor = AvatarBackground
     )
 }
-

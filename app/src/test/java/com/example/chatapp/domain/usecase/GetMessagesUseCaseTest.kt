@@ -44,5 +44,3 @@ class GetMessagesUseCaseTest {
         assertEquals(emptyList(), result)
     }
 }
-
-

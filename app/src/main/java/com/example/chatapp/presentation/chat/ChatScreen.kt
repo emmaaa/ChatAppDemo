@@ -1,15 +1,13 @@
 package com.example.chatapp.presentation.chat
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -48,20 +46,23 @@ private fun ChatScreenContent(
 
     LaunchedEffect(uiState.items.size, uiState.isOtherTyping) {
         if (uiState.items.isNotEmpty() || uiState.isOtherTyping) {
-            val targetIndex = if (uiState.isOtherTyping) uiState.items.size else uiState.items.size - 1
+            val targetIndex =
+                if (uiState.isOtherTyping) uiState.items.size else uiState.items.size - 1
             listState.animateScrollToItem(targetIndex.coerceAtLeast(0))
         }
     }
 
-    Scaffold(
-        modifier = modifier,
-        topBar = { ChatTopBar(userName = ChatViewModel.OTHER_USER_NAME) },
-        containerColor = MaterialTheme.colorScheme.background
-    ) { scaffoldPadding ->
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+        ChatTopBar(userName = ChatViewModel.OTHER_USER_NAME)
+
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(scaffoldPadding)
+                .weight(1f)
+                .fillMaxWidth()
                 .imePadding()
         ) {
             MessageList(
@@ -89,11 +90,21 @@ private fun ChatScreenPreview() {
         items = listOf(
             ChatListItem.SectionHeader(id = "header_1", label = "Today 10:30"),
             ChatListItem.MessageItem(
-                message = Message(id = 1, senderId = "sarah", text = "Hey there!", timestamp = 1_000L),
+                message = Message(
+                    id = 1,
+                    senderId = "sarah",
+                    text = "Hey there!",
+                    timestamp = 1_000L
+                ),
                 isSmallSpacingBelow = false
             ),
             ChatListItem.MessageItem(
-                message = Message(id = 2, senderId = "me", text = "Hi, how's it going?", timestamp = 2_000L),
+                message = Message(
+                    id = 2,
+                    senderId = "me",
+                    text = "Hi, how's it going?",
+                    timestamp = 2_000L
+                ),
                 isSmallSpacingBelow = false
             )
         ),
