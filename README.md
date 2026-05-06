@@ -108,7 +108,7 @@ Key Kotlin/Android techniques used:
 
 ## 8) Cheeky Bonus Points
 - Added an app icon
-- Theming with Material3 and dark mode support
+- Started Theming with Material3 and dark mode support
 - Simulated "typing..." indicator for the other person during the delay before their reply is shown
 - Accessibility testing of adaptive text sizes and content descriptions
 - Toast feedback on back and more options buttons with suggestions of what they would do
@@ -138,6 +138,7 @@ Testing:
 - Snapshot tests, PACT tests, e2e tests...
 
 App Features:
+- Tidy up repeated theming colours by defining primary/onPrimary, secondary/onSecondary etc
 - Back button could go back to the messages list
 - More options button can have features like block, mute, and search message history
 - Avatar and username is hardcoded, this can be added to data model 

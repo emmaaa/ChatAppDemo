@@ -10,4 +10,3 @@ data class MessageEntity(
     val text: String,
     val timestamp: Long
 )
-

@@ -70,7 +70,7 @@ private fun getRowPadding(item: MessageItem): Dp =
     if (item.isSmallSpacingBelow) ChatDimensions.messageSpacingSmall else ChatDimensions.messageSpacingNormal
 
 private fun getChatBubbleShape(isCurrentUser: Boolean): RoundedCornerShape = if (isCurrentUser) {
-    // Sent: small tail on bottom-right
+    // Sent (tail on bottom-right)
     RoundedCornerShape(
         topStart = ChatDimensions.bubbleCornerRadiusLarge,
         topEnd = ChatDimensions.bubbleCornerRadiusLarge,
@@ -78,7 +78,7 @@ private fun getChatBubbleShape(isCurrentUser: Boolean): RoundedCornerShape = if 
         bottomEnd = ChatDimensions.bubbleCornerRadiusTail
     )
 } else {
-    // Received: small tail on bottom-left
+    // Received (tail on bottom-left)
     RoundedCornerShape(
         topStart = ChatDimensions.bubbleCornerRadiusLarge,
         topEnd = ChatDimensions.bubbleCornerRadiusLarge,

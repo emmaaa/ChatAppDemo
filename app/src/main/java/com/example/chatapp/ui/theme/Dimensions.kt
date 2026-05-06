@@ -5,7 +5,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-// Centralized dimensions theme
 object ChatDimensions {
     // Bubble styling
     val bubbleCornerRadiusLarge: Dp = 18.dp
