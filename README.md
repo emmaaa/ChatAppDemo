@@ -111,6 +111,7 @@ Key Kotlin/Android techniques used:
 - Started Theming with Material3 and dark mode support
 - Simulated "typing..." indicator for the other person during the delay before their reply is shown
 - Toast feedback on back and more options buttons with suggestions of what they would do
+- Moved date/time formatting to a dedicated formatter for easier testing
 
 ## 9) Testing Strategy
 
@@ -134,13 +135,13 @@ Testing:
 - There is only one basic UI test, this can be expanded to cover more AC
 - Same timestamp-window but different sender should not group
 - Snapshot tests, PACT tests, e2e tests...
+- As UI tests grow, add a test framework to improve readability and maintainability
 
 App Features:
 - Continue Material3 colour scheme theming (secondary/error/surface roles etc)
 - Back button could go back to the messages list
 - More options button can have features like block, mute, and search message history
 - Avatar and username is hardcoded, this can be added to data model 
-- Move date/time formatting to a dedicated formatter for easier localization testing
 - Accessibility can be improved by grouping avatar with message (currently read separately)
 - Ignoring the lack of back-end and assuming this is always just a demo app, it could be modified 
   with a developer menu to toggle between different UI modes for POC purposes for designers or stakeholders

@@ -11,6 +11,7 @@ class MessageMapperTest {
 
     @Test
     fun `Given Entity, When mapped, Then converts to Domain`() {
+        // Given
         val entity = MessageEntity(
             id = 1,
             senderId = "Woody",
@@ -18,8 +19,10 @@ class MessageMapperTest {
             timestamp = 1000L
         )
 
+        // When
         val result = mapper.toDomain(entity)
 
+        // Then
         assertEquals(1L, result.id)
         assertEquals("Woody", result.senderId)
         assertEquals("Howdy", result.text)
@@ -28,6 +31,7 @@ class MessageMapperTest {
 
     @Test
     fun `Given Domain, When mapped, Then converts to Entity`() {
+        // Given
         val message = Message(
             id = 2,
             senderId = "Jessie",
@@ -35,8 +39,10 @@ class MessageMapperTest {
             timestamp = 2000L
         )
 
+        // When
         val result = mapper.toEntity(message)
 
+        // Then
         assertEquals(2L, result.id)
         assertEquals("Jessie", result.senderId)
         assertEquals("Yeehaw", result.text)

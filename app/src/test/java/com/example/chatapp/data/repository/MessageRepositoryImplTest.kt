@@ -27,7 +27,8 @@ class MessageRepositoryImplTest {
     }
 
     @Test
-    fun `getMessages should map entities to domain messages`() = runTest {
+    fun `Given DAO returns entities, When getMessages, Then maps to domain messages`() = runTest {
+        // Given
         val entity = MessageEntity(
             id = 1,
             senderId = "user1",
@@ -36,15 +37,18 @@ class MessageRepositoryImplTest {
         )
         every { dao.getMessages() } returns flowOf(listOf(entity))
 
+        // When
         val result = repository.getMessages().first()
 
+        // Then
         assertEquals(1, result.size)
         assertEquals("user1", result[0].senderId)
         assertEquals("Hello", result[0].text)
     }
 
     @Test
-    fun `sendMessage should call dao insertMessage`() = runTest {
+    fun `Given a domain message, When sendMessage, Then DAO receives mapped entity`() = runTest {
+        // Given
         val message = Message(
             id = 0,
             senderId = "user1",
@@ -52,8 +56,10 @@ class MessageRepositoryImplTest {
             timestamp = 1000L
         )
 
+        // When
         repository.sendMessage(message)
 
+        // Then
         coVerify {
             dao.insertMessage(match { entity ->
                 entity.senderId == "user1" && entity.text == "Test"
@@ -61,14 +67,15 @@ class MessageRepositoryImplTest {
         }
     }
 
-
     @Test
-    fun `getMessages should handle empty list`() = runTest {
+    fun `Given DAO returns empty list, When getMessages, Then returns empty list`() = runTest {
+        // Given
         every { dao.getMessages() } returns flowOf(emptyList())
 
+        // When
         val result = repository.getMessages().first()
 
+        // Then
         assertEquals(emptyList(), result)
     }
 }
-

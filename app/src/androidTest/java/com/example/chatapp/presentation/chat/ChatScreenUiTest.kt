@@ -1,8 +1,9 @@
 package com.example.chatapp.presentation.chat
 
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import com.example.chatapp.domain.time.TimeProvider
 import com.example.chatapp.domain.usecase.GetMessagesUseCase
 import com.example.chatapp.domain.usecase.SendMessageUseCase
 import io.mockk.every
@@ -22,7 +23,10 @@ class ChatScreenUiTest {
         val getMessagesUseCase = mockk<GetMessagesUseCase>()
         val sendMessageUseCase = mockk<SendMessageUseCase>()
         every { getMessagesUseCase() } returns flowOf(emptyList())
-        val viewModel = ChatViewModel(getMessagesUseCase, sendMessageUseCase)
+        val formatter = MessageTimeFormatter(object : TimeProvider {
+            override fun currentTimeMillis() = System.currentTimeMillis()
+        })
+        val viewModel = ChatViewModel(getMessagesUseCase, sendMessageUseCase, formatter)
 
         // When
         composeTestRule.setContent {

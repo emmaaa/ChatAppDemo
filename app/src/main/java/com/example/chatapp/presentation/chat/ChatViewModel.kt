@@ -15,10 +15,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 
 /** How old a previous message must be before a section header is shown (1 hour) */
@@ -30,7 +26,8 @@ private const val MESSAGE_SEPARATION_THRESHOLD = 20_000L
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     getMessages: GetMessagesUseCase,
-    private val sendMessage: SendMessageUseCase
+    private val sendMessage: SendMessageUseCase,
+    private val messageTimeFormatter: MessageTimeFormatter
 ) : ViewModel() {
 
     private val _inputText = MutableStateFlow("")
@@ -118,7 +115,7 @@ class ChatViewModel @Inject constructor(
     private fun buildSectionHeader(messageTimestamp: Long): ChatListItem.SectionHeader =
         ChatListItem.SectionHeader(
             id = "header_$messageTimestamp",
-            label = formatSectionLabel(messageTimestamp)
+            label = messageTimeFormatter.formatSectionLabel(messageTimestamp)
         )
 
     private fun isWithinMessageSeparationThreshold(
@@ -156,25 +153,6 @@ class ChatViewModel @Inject constructor(
     private fun List<Message>.combineIntoSingleMessage(): Message =
         first().takeIf { size == 1 }
             ?: first().copy(text = joinToString("\n") { it.text })
-
-    private fun formatSectionLabel(timestamp: Long): String {
-        val today = Calendar.getInstance()
-        val cal = Calendar.getInstance().apply { timeInMillis = timestamp }
-        val yesterday = today.clone() as Calendar
-        yesterday.add(Calendar.DAY_OF_YEAR, -1)
-
-        val day = when {
-            cal.isSameDay(today) -> "Today"
-            cal.isSameDay(yesterday) -> "Yesterday"
-            else -> SimpleDateFormat("EEEE", Locale.getDefault()).format(Date(timestamp))
-        }
-        val time = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date(timestamp))
-        return "$day $time"
-    }
-
-    private fun Calendar.isSameDay(other: Calendar) =
-        get(Calendar.YEAR) == other.get(Calendar.YEAR) &&
-                get(Calendar.DAY_OF_YEAR) == other.get(Calendar.DAY_OF_YEAR)
 
     companion object {
         const val CURRENT_USER_ID = "me"
