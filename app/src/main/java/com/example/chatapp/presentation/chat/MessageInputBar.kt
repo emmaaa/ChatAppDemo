@@ -29,9 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.chatapp.R
-import com.example.chatapp.ui.theme.ChatPink
 import com.example.chatapp.ui.theme.ChatDimensions
-import com.example.chatapp.ui.theme.SendButtonIcon
 
 @Composable
 internal fun MessageInputBar(
@@ -90,12 +88,12 @@ internal fun MessageInputBar(
             modifier = Modifier
                 .size(ChatDimensions.buttonSendSize)
                 .clip(CircleShape)
-                .background(ChatPink)
+                .background(MaterialTheme.colorScheme.primary)
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.Send,
                 contentDescription = stringResource(R.string.btn_send),
-                tint = SendButtonIcon,
+                tint = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier.size(ChatDimensions.iconSendSize)
             )
         }

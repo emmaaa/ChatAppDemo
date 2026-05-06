@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,14 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.chatapp.R
-import com.example.chatapp.ui.theme.AvatarBackground
-import com.example.chatapp.ui.theme.BubbleReceived
+import com.example.chatapp.domain.model.UserProfile
 import com.example.chatapp.ui.theme.ChatDimensions
-import com.example.chatapp.ui.theme.TypingIndicatorText
 
 @Composable
 internal fun TypingBubble(
-    userName: String,
+    userProfile: UserProfile,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -31,11 +30,9 @@ internal fun TypingBubble(
         verticalAlignment = Alignment.Bottom
     ) {
         UserAvatar(
-            name = userName,
+            profile = userProfile,
             size = ChatDimensions.avatarSizeMessage,
-            backgroundColor = AvatarBackground,
-            modifier = Modifier.padding(end = ChatDimensions.paddingAvatarEnd),
-            imageResourceId = if (userName == "Sarah") R.drawable.avatar else null
+            modifier = Modifier.padding(end = ChatDimensions.paddingAvatarEnd)
         )
 
         Surface(
@@ -45,12 +42,12 @@ internal fun TypingBubble(
                 bottomStart = ChatDimensions.bubbleCornerRadiusTail,
                 bottomEnd = ChatDimensions.bubbleCornerRadiusLarge
             ),
-            color = BubbleReceived,
+            color = MaterialTheme.colorScheme.surfaceVariant,
             modifier = Modifier.widthIn(max = ChatDimensions.typingBubbleMaxWidth)
         ) {
             Text(
                 text = stringResource(R.string.typing_indicator),
-                color = TypingIndicatorText,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontSize = ChatDimensions.textSizeTyping,
                 modifier = Modifier.padding(
                     horizontal = ChatDimensions.paddingTextBubbleHorizontal,
@@ -64,5 +61,5 @@ internal fun TypingBubble(
 @Preview(showBackground = true)
 @Composable
 private fun TypingBubblePreview() {
-    TypingBubble(userName = "Sarah")
+    TypingBubble(userProfile = UserProfile(name = "Sarah", avatarRes = R.drawable.avatar))
 }

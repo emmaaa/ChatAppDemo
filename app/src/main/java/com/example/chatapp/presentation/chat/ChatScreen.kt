@@ -14,7 +14,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.chatapp.R
 import com.example.chatapp.domain.model.Message
+import com.example.chatapp.domain.model.UserProfile
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,7 +59,7 @@ private fun ChatScreenContent(
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        ChatTopBar(userName = ChatViewModel.OTHER_USER_NAME)
+        ChatTopBar(userProfile = uiState.otherUserProfile)
 
         Column(
             modifier = Modifier
@@ -68,6 +70,7 @@ private fun ChatScreenContent(
             MessageList(
                 items = uiState.items,
                 isOtherTyping = uiState.isOtherTyping,
+                otherUserProfile = uiState.otherUserProfile,
                 listState = listState,
                 modifier = Modifier
                     .weight(1f)
@@ -109,7 +112,8 @@ private fun ChatScreenPreview() {
             )
         ),
         inputText = "",
-        isOtherTyping = false
+        isOtherTyping = false,
+        otherUserProfile = UserProfile(name = "Sarah", avatarRes = R.drawable.avatar)
     )
 
     ChatScreenContent(

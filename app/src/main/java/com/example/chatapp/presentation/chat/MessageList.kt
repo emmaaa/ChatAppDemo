@@ -8,12 +8,14 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.chatapp.domain.model.UserProfile
 import com.example.chatapp.ui.theme.ChatDimensions
 
 @Composable
 internal fun MessageList(
     items: List<ChatListItem>,
     isOtherTyping: Boolean,
+    otherUserProfile: UserProfile,
     listState: LazyListState,
     modifier: Modifier = Modifier
 ) {
@@ -38,14 +40,14 @@ internal fun MessageList(
                 is ChatListItem.MessageItem -> MessageBubble(
                     item = item,
                     isCurrentUser = item.message.senderId == ChatViewModel.CURRENT_USER_ID,
-                    otherUserName = ChatViewModel.OTHER_USER_NAME
+                    otherUserProfile = otherUserProfile
                 )
             }
         }
 
         if (isOtherTyping) {
             item(key = "typing") {
-                TypingBubble(userName = ChatViewModel.OTHER_USER_NAME)
+                TypingBubble(userProfile = otherUserProfile)
             }
         }
     }

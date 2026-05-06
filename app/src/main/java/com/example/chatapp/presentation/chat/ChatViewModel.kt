@@ -3,6 +3,8 @@ package com.example.chatapp.presentation.chat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.chatapp.domain.model.Message
+import com.example.chatapp.R
+import com.example.chatapp.domain.model.UserProfile
 import com.example.chatapp.domain.usecase.GetMessagesUseCase
 import com.example.chatapp.domain.usecase.SendMessageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -35,7 +37,6 @@ class ChatViewModel @Inject constructor(
     private val _otherTypingCount = MutableStateFlow(0)
     private var nextReplyIndex = 0
 
-
     val uiState: StateFlow<ChatUiState> = combine(
         getMessages(),
         _inputText,
@@ -44,12 +45,13 @@ class ChatViewModel @Inject constructor(
         ChatUiState(
             items = messages.toListItems(),
             inputText = input,
-            isOtherTyping = typingCount > 0
+            isOtherTyping = typingCount > 0,
+            otherUserProfile = OTHER_USER_PROFILE
         )
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = ChatUiState()
+        initialValue = ChatUiState(otherUserProfile = OTHER_USER_PROFILE)
     )
 
     fun onInputChanged(text: String) {
@@ -177,7 +179,10 @@ class ChatViewModel @Inject constructor(
     companion object {
         const val CURRENT_USER_ID = "me"
         const val OTHER_USER_ID = "sarah"
-        const val OTHER_USER_NAME = "Sarah"
+        val OTHER_USER_PROFILE = UserProfile(
+            name = "Sarah",
+            avatarRes = R.drawable.avatar
+        )
 
         private val DEMO_REPLIES = listOf(
             "Hey, not much, how are you?",

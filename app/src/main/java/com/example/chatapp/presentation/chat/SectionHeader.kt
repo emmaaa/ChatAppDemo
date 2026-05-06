@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,8 +15,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.chatapp.ui.theme.ChatDimensions
-import com.example.chatapp.ui.theme.SectionHeaderDivider
-import com.example.chatapp.ui.theme.SectionHeaderText
 
 @Composable
 internal fun SectionHeader(
@@ -32,12 +31,12 @@ internal fun SectionHeader(
             modifier = Modifier
                 .weight(1f)
                 .size(height = ChatDimensions.spacerDividerHeight, width = 0.dp)
-                .background(SectionHeaderDivider)
+                .background(MaterialTheme.colorScheme.outlineVariant)
         )
         Text(
             text = label,
             fontSize = ChatDimensions.textSizeSectionHeader,
-            color = SectionHeaderText,
+            color = MaterialTheme.colorScheme.outline,
             modifier = Modifier.padding(horizontal = ChatDimensions.paddingSectionHeaderHorizontal),
             textAlign = TextAlign.Center
         )
@@ -45,7 +44,7 @@ internal fun SectionHeader(
             modifier = Modifier
                 .weight(1f)
                 .size(height = ChatDimensions.spacerDividerHeight, width = 0.dp)
-                .background(SectionHeaderDivider)
+                .background(MaterialTheme.colorScheme.outlineVariant)
         )
     }
 }

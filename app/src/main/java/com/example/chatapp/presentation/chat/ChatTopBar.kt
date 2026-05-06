@@ -22,14 +22,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.chatapp.R
-import com.example.chatapp.ui.theme.AvatarBackground
+import com.example.chatapp.domain.model.UserProfile
 import com.example.chatapp.ui.theme.ChatDimensions
-import com.example.chatapp.ui.theme.ChatPink
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ChatTopBar(
-    userName: String,
+    userProfile: UserProfile,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -39,14 +38,12 @@ internal fun ChatTopBar(
         title = {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 UserAvatar(
-                    name = userName,
-                    size = ChatDimensions.avatarSizeTopbar,
-                    backgroundColor = AvatarBackground,
-                    imageResourceId = if (userName == "Sarah") R.drawable.avatar else null
+                    profile = userProfile,
+                    size = ChatDimensions.avatarSizeTopbar
                 )
                 Spacer(Modifier.width(ChatDimensions.paddingSpacerWidth))
                 Text(
-                    text = userName,
+                    text = userProfile.name,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = ChatDimensions.textSizeTopbarTitle
                 )
@@ -63,7 +60,7 @@ internal fun ChatTopBar(
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = stringResource(R.string.btn_back),
-                    tint = ChatPink
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         },
@@ -91,5 +88,5 @@ internal fun ChatTopBar(
 @Preview
 @Composable
 private fun ChatTopBarPreview() {
-    ChatTopBar(userName = "Sarah")
+    ChatTopBar(userProfile = UserProfile(name = "Sarah", avatarRes = R.drawable.avatar))
 }
