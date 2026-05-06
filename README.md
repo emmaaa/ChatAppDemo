@@ -6,7 +6,7 @@ Simple one-to-one chat demo-app built with Kotlin, Jetpack Compose, Room, and Hi
 
 The app renders a chat conversation where:
 
-- messages are shown in chronological order from bottom to top
+- messages are shown in chronological order with newer messages at the bottom
 - consecutive messages under 20s from the same sender are grouped into one bubble
 - section headers are inserted when there is a gap over 1 hour between message groups
 - sending blank input is blocked (nobody likes pointless spamming!)
@@ -28,7 +28,7 @@ The app renders a chat conversation where:
 - Room
 - Hilt (DI)
 - Coroutines + Flow
-- JUnit + Mockito + Turbine (unit tests)
+- JUnit + MockK + kotlinx-coroutines-test (unit tests)
 
 ## 4) Architecture
 
@@ -110,25 +110,23 @@ Key Kotlin/Android techniques used:
 - Added an app icon
 - Started Theming with Material3 and dark mode support
 - Simulated "typing..." indicator for the other person during the delay before their reply is shown
-- Accessibility testing of adaptive text sizes and content descriptions
 - Toast feedback on back and more options buttons with suggestions of what they would do
 
 ## 9) Testing Strategy
 
 Current unit tests cover:
 
-- domain model behavior (`MessageTest`)
-- mapper correctness (`MessageMapperTest`)
-- repository mapping/insert behavior (`MessageRepositoryImplTest`)
-- use case behavior (`GetMessagesUseCaseTest`, `SendMessageUseCaseTest`)
-- key chat presentation logic (`ChatViewModelTest`), including:
+- Domain model behavior (`MessageTest`)
+- Mapper correctness (`MessageMapperTest`)
+- Repository mapping/insert behavior (`MessageRepositoryImplTest`)
+- Use case behavior (`GetMessagesUseCaseTest`, `SendMessageUseCaseTest`)
+- Key chat presentation logic (`ChatViewModelTest`), including:
   - grouping within threshold
   - non-grouping at threshold boundary
   - section header insertion on long gap
   - send guard for blank input
-
-- One basic UI test (`ChatScreenTest`) just launches the screen
-- Basic Accessibility testing of adaptive text sizes and content descriptions
+- One basic UI test (`ChatScreenUiTest`) launches the app with a simple assertion
+- Manual accessibility testing of adaptive text sizes and content descriptions
 
 ## 10) Theoretical future improvements / "If I had more time..."
 
@@ -138,7 +136,7 @@ Testing:
 - Snapshot tests, PACT tests, e2e tests...
 
 App Features:
-- Tidy up repeated theming colours by defining primary/onPrimary, secondary/onSecondary etc
+- Continue Material3 colour scheme theming (secondary/error/surface roles etc)
 - Back button could go back to the messages list
 - More options button can have features like block, mute, and search message history
 - Avatar and username is hardcoded, this can be added to data model 
