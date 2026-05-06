@@ -144,3 +144,5 @@ App Features:
 - Avatar and username is hardcoded, this can be added to data model 
 - Move date/time formatting to a dedicated formatter for easier localization testing
 - Accessibility can be improved by grouping avatar with message (currently read separately)
+- Ignoring the lack of back-end and assuming this is always just a demo app, it could be modified 
+  with a developer menu to toggle between different UI modes for POC purposes for designers or stakeholders
